@@ -61,7 +61,7 @@ function playRound(pChoice, cChoice) {
       computerWins;
   }
   text.style.color = "red";
-  text.style.fontWeight = "bold"
+  text.style.fontWeight = "bold";
 
   resultsText.appendChild(text);
   if (computerWins == 3) {
@@ -75,10 +75,20 @@ function playRound(pChoice, cChoice) {
 }
 
 function resetGame(resultsText) {
+  buttons.forEach((button) => {
+    button.disabled = "true";
+  });
   playerWins = 0;
   computerWins = 0;
-  let resetButton = document.createElement("button")
-  resetButton.textContent = "reset"
+  let resetButton = document.createElement("button");
+  resetButton.textContent = "reset";
   resultsText.appendChild(resetButton);
-  buttons.disabled = true;
+  resetButton.onclick = () => {
+    buttons.forEach((button) => {
+      button.disabled = false;
+    });
+    resetButton.remove();
+    resultsText.innerText = ""
+    
+  };
 }
